@@ -1,0 +1,74 @@
+import React from 'react';
+
+export default function Home() {
+  const maskStyle = {
+    height: '600px',
+    width: '100vw',
+    background: 'black',
+    overflow: 'hidden',
+    background: 'linear-gradient(rgba(19, 28, 11, 0.3), rgba(19, 55, 100, 0.9)), url("https://bit.ly/38szWHt")',
+    backgroundAttachment: 'fixed',
+  };
+
+  return (
+    <>
+      <div>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"></link>
+        <div>
+
+          <div style={maskStyle} className="rgba-black-strong">
+            <div className="container-fluid d-flex align-items-center justify-content-center h-100">
+              <div className="row d-flex justify-content-center text-center">
+                <div className="col-md-10">
+                  <h2 className="display-4 font-weight-bold text-white pt-5 mb-2">Learning never stops</h2>
+                  <hr className="hr-light"></hr>
+                  <h4 className="text-white my-4">Served more than half a million customers till date, with an average rating of 4.9+</h4>
+                  <button type="button" className="btn btn-outline-white text-white">Read more
+                    <i className="fa fa-book ml-2"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <main className="mt-5">
+          <div className="container">
+            <section id="best-features" className="text-center">
+              <h2 className="mb-5 font-weight-bold">Best Features</h2>
+              <div className="row d-flex justify-content-center mb-4">
+                <div className="col-md-8">
+                  <p className="grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi voluptate
+                    hic
+                    provident nulla repellat
+                    facere esse molestiae ipsa labore porro minima quam quaerat rem, natus repudiandae debitis
+                    est
+                    sit pariatur.</p>
+
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-md-4 mb-5">
+                  <i className="fa fa-camera-retro fa-4x orange-text"></i>
+                  <h4 className="my-4 font-weight-bold">Experience</h4>
+                  <p className="grey-text">Experienced staff with years of experience</p>
+                </div>
+                <div className="col-md-4 mb-1">
+                  <i className="fa fa-heart fa-4x orange-text"></i>
+                  <h4 className="my-4 font-weight-bold">Quality</h4>
+                  <p className="grey-text">High-quality books to serve your purpose</p>
+                </div>
+                <div className="col-md-4 mb-1">
+                  <i className="fa fa-bicycle fa-4x orange-text"></i>
+                  <h4 className="my-4 font-weight-bold">Seamless</h4>
+                  <p className="grey-text">Seamless and hassle-free process to help you with ease</p>
+                </div>
+              </div>
+
+            </section>
+          </div>
+        </main>
+      </div>
+    </>
+  );
+}
