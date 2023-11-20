@@ -1,28 +1,51 @@
 import React, { useState } from 'react';
 import Navbar from './Navbar';
+import { Link, useNavigate } from 'react-router-dom';
 
 const AuthorForm = () => {
+  const navigate=useNavigate();
   const [author, setAuthor] = useState({
     name: '',
     description: '',
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setAuthor((prevAuthor) => ({ ...prevAuthor, [name]: value }));
+    // const { name, value } = e.target;
+    const name=e.target.name
+    const value=e.target.value
+    setAuthor({ ...author, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit =  (e) => {
     e.preventDefault();
-    // Add your form submission logic here
-    console.log('Author form submitted:', author);
-    // You can make a fetch request or use a state management library like Redux to handle form submission
+    const dr={...author}
+    const name=dr.name
+    const description=dr.description
+    const data={name,description}
+
+    try {
+      fetch('http://localhost:8080/save-author',{
+        method:"post",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify(data)
+    }).then(()=>{
+        console.log(data)
+        navigate("/Author")
+    }).catch((e)=>{
+        console.log(e)
+    })
+
+
+      
+    } catch (error) {
+      console.error('Error:', error);
+      // Handle network or other errors
+    }
   };
 
   return (
     <div>
-      
-      <Navbar/>
+      <Navbar />
       <div className="container my-2">
         <div className="card">
           <div className="card-body">
@@ -59,7 +82,7 @@ const AuthorForm = () => {
                 </div>
 
                 <div className="col-md-6">
-                  <input type="submit" className="btn btn-primary" value="Submit" />
+                <input type="submit" className="btn btn-primary" value="Submit" />
                 </div>
               </div>
             </form>
