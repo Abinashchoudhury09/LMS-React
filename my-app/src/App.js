@@ -1,20 +1,30 @@
+import React from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Signa from './Signa'
+import Home from './Component/Home'
+import BookList from './Component/Book'
+import Authors from './Component/Author'
+import Categories from './Component/Categories'
+import Publishers from './Component/Publisher'
 
-import './App.css';
-import Cardview from './Component/Cardview';
-import Home from './Component/Home';
-import Navbar from './Component/Navbar';
-import Signin from './Component/Signin';
-
-function app() {
+ const App=()=> {
   return (
     <>
-    {/* <Navbar title="LIBRARY MANAGEMENT SYSTEM"/>
-    <Home/> */}
-    <Signin/>
+   
+    <BrowserRouter>
+    <Routes>
+      
+      
+        <Route path='/' element={<Home/>}/>
+        <Route path='/Book' element={<BookList/>}/>
+        <Route path='/Author' element={<Authors/>}/>
+        <Route path='/Categories' element={<Categories/>}/>
+        <Route path='/Publisher' element={<Publishers/>}/>
+      
+    
+    </Routes>
+    </BrowserRouter>
     </>
-
-  );    
-  
+  )
 }
-
-export default app;
+export default App

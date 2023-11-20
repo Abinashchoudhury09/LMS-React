@@ -1,38 +1,63 @@
 import React from 'react'
 
-export default function Navbar(props) {
-  const maskStyle = {
-    height: '60px',
-    width: '100vw',
-    background: 'black',
-    overflow: 'hidden',
-    background: 'linear-gradient(rgba(59, 78, 113, 0.8), rgba(65, 15, 100, 2)), url("https://bit.ly/38szWHt")',
-    backgroundAttachment: 'fixed',
-  };
+export default function Navbar() {
+    const navdesign = {
+        width: '100vw',
+      };
   return (
     <div>
-      <nav style={maskStyle} className="navbar ">
-  <div className="container-fluid">
-    <p className="navbar-brand " href="/">{props.title}
-    </p>
-    
-    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span className="navbar-toggler-icon"></span>
-    </button>
-    <div className="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-        <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" href="#">Link</a>
-        </li>
-        
-      </ul>
-      
-    </div>
-  </div>
-</nav>
+      <nav style={navdesign} className="navbar navbar-expand-lg navbar-dark bg-info">
+        <div className="container-fluid">
+          <a className="navbar-brand" href="/">
+            Library Management System
+          </a>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarScroll"
+            aria-controls="navbarScroll"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarScroll">
+            <ul className="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll">
+              <li className="nav-item">
+                <a className="nav-link active" aria-current="page" href="#">
+                  Home
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href="">
+                  Categories
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href=" ">
+                  Books
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href=" ">
+                  Publishers
+                </a>
+              </li>
+              <li className="nav-item">
+                <a className="nav-link" href=" ">
+                  Authors
+                </a>
+              </li>
+            </ul>
+              <div className="nav-item">
+                <button className="btn btn-primary " type="button">
+                  Logout
+                </button>
+              </div>
+          </div>
+        </div>
+      </nav>
     </div>
   )
 }
