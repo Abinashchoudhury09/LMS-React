@@ -6,7 +6,7 @@ import BookList from './Component/Book'
 import Authors from './Component/Author'
 import Categories from './Component/Categories'
 import Publishers from './Component/Publisher'
-import Signin from './Component/Signin'
+import Signin from './Component/Signup'
 import Navbarhome from './Component/Navbarhome'
 import AddBook from './Component/Add-book'
 import AuthorForm from './Component/Add-author'
@@ -16,6 +16,9 @@ import UpdateBook from './Component/Update-book'
 import UpdateAuthor from './Component/Update-author'
 import UpdateCategory from './Component/Update-categories'
 import UpdatePublisher from './Component/Update-publisher'
+import Signup from './Component/Signup'
+import Login from './Component/Login'
+import Userpanel from './Component/Userpanel'
 
  const App=()=> {
   return (
@@ -30,7 +33,7 @@ import UpdatePublisher from './Component/Update-publisher'
         <Route path='/Author' element={<Authors/>}/>
         <Route path='/Categories' element={<Categories/>}/>
         <Route path='/Publisher' element={<Publishers/>}/>
-        <Route path='/Signin' element={<Signin/>}/>
+        <Route path='/Login' element={<Login/>}/>
         <Route path='/Navbarhome' element={<Navbarhome/>}/>
         <Route path='/Add-book' element={<AddBook/>}/>
         <Route path='/Add-author' element={<AuthorForm/>}/>
@@ -40,6 +43,8 @@ import UpdatePublisher from './Component/Update-publisher'
         <Route path='/Update-author' element={<UpdateAuthor/>}/>
         <Route path='/Update-categories' element={<UpdateCategory/>}/>
         <Route path='/Update-publisher' element={<UpdatePublisher/>}/>
+        <Route path='/Signup' element={<Signup/>}/>
+        <Route path='/Userpanel' element={<Userpanel/>}/>
 
       
     

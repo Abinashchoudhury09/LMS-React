@@ -1,47 +1,89 @@
 import React, { useState } from 'react';
 import Navbar from './Navbar';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 const AddPublisher = () => {
-  const [publisherName, setPublisherName] = useState('');
+  const navigate= useNavigate();
+  const [publisherName, setPublisherName] = useState({
+    name:'',
+    book:'',
+  });
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleChange = (e) => {
+    // const { name, value } = e.target;
+    const name=e.target.name
+    const value=e.target.value
+    setPublisherName({ ...publisherName, [name]: value });
+  };
 
-    // Check if publisherName is not null before submitting the form
-    if (publisherName.trim() !== '') {
-      // Add your logic for form submission here
-      console.log('Form submitted:', publisherName);
-      // You can send a request to save the publisher or perform other actions
-    } else {
-      // Handle the case where publisherName is null
-      console.error('Publisher Name cannot be empty.');
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const dr={...publisherName}
+    const name=dr.name
+    const book=dr.book
+    const data={name,book}
+
+    try {
+      fetch('http://localhost:8080/save-publisher',{
+        method:"post",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify(data)
+    }).then(()=>{
+        console.log(data)
+        navigate("/Publisher")
+    }).catch((e)=>{
+        console.log(e)
+    })
+
+
+      
+    } catch (error) {
+      console.error('Error:', error);
+      // Handle network or other errors
     }
+
   };
 
   return (
     <div>
-      <Navbar/>
+      <Navbar />
       <div className="container my-2">
         <div className="card">
           <div className="card-body">
             <form onSubmit={handleSubmit}>
               <div className="row">
-                <div className="form-group col-md-8">
-                  <label htmlFor="name" className="col-form-label">Publisher Name</label>
+              <div className="form-group col-md-8">
+                  <label htmlFor="name" className="col-form-label">
+                    Publisher Name
+                  </label>
                   <input
                     type="text"
-                    value={publisherName}
-                    onChange={(e) => setPublisherName(e.target.value)}
+                    name="name"
+                    value={publisherName.name}
+                    onChange={handleChange}
                     className="form-control"
                     id="name"
                     placeholder="Publisher Name"
-                    required
+                    autoComplete="off"
+                  />
+                </div>
+
+                <div className="form-group col-md-8">
+                  <div className="col-form-label">Description</div>
+                  <input
+                    type="text"
+                    value={publisherName.book}
+                    onChange={handleChange}
+                    name="book"
+                    className="form-control"
+                    id="book"
+                    placeholder="Description"
+                    autoComplete="off"
                   />
                 </div>
                 <div className="col-md-6">
-                 <Link to='/Publisher' ><input type="submit" className="btn btn-primary" value="Submit" /></Link>
+                  <input type="submit" className="btn btn-primary" value="Submit" />
                 </div>
               </div>
             </form>

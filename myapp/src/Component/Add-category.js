@@ -1,22 +1,47 @@
 import React, { useState } from 'react';
 import Navbar from './Navbar';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const AddCategory = () => {
-  const [categoryName, setCategoryName] = useState('');
+  const navigate=useNavigate();
+  const [categoryName, setcategoryName] = useState({
+    name:'',
+    book:'',
+  });
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleChange = (e) => {
+    // const { name, value } = e.target;
+    const name=e.target.name
+    const value=e.target.value
+    setcategoryName({ ...categoryName, [name]: value });
+  };
 
-    // Check if categoryName is not null before submitting the form
-    if (categoryName.trim() !== '') {
-      // Add your logic for form submission here
-      console.log('Form submitted:', categoryName);
-      // You can send a request to save the category or perform other actions
-    } else {
-      // Handle the case where categoryName is null
-      console.error('Category Name cannot be empty.');
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const dr={...categoryName}
+    const name=dr.name
+    const book=dr.book
+    const data={name,book}
+
+    try {
+      fetch('http://localhost:8080/save-category',{
+        method:"post",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify(data)
+    }).then(()=>{
+        console.log(data)
+        navigate("/Categories")
+    }).catch((e)=>{
+        console.log(e)
+    })
+
+
+      
+    } catch (error) {
+      console.error('Error:', error);
+      // Handle network or other errors
     }
+
   };
 
   return (
@@ -27,20 +52,37 @@ const AddCategory = () => {
           <div className="card-body">
             <form onSubmit={handleSubmit}>
               <div className="row">
-                <div className="form-group col-md-8">
-                  <label htmlFor="name" className="col-form-label">Category Name</label>
+              <div className="form-group col-md-8">
+                  <label htmlFor="name" className="col-form-label">
+                    Category Name
+                  </label>
                   <input
                     type="text"
-                    value={categoryName}
-                    onChange={(e) => setCategoryName(e.target.value)}
+                    name="name"
+                    value={categoryName.name}
+                    onChange={handleChange}
                     className="form-control"
                     id="name"
                     placeholder="Category Name"
-                    required
+                    autoComplete="off"
+                  />
+                </div>
+
+                <div className="form-group col-md-8">
+                  <div className="col-form-label">Description</div>
+                  <input
+                    type="text"
+                    value={categoryName.book}
+                    onChange={handleChange}
+                    name="book"
+                    className="form-control"
+                    id="book"
+                    placeholder="Description"
+                    autoComplete="off"
                   />
                 </div>
                 <div className="col-md-6">
-                  <Link to='/categories'><input type="submit" className="btn btn-primary" value="Submit" /></Link>
+                  <input type="submit" className="btn btn-primary" value="Submit" />
                 </div>
               </div>
             </form>

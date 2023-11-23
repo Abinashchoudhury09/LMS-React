@@ -1,10 +1,11 @@
 
 import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar';
-import { Link } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 
 const Authors = () => {
     const [authors, setAuthors] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -17,6 +18,7 @@ const Authors = () => {
                 const data = await response.json();
                 setAuthors(data);
                 console.log(data)
+               
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -57,11 +59,12 @@ const Authors = () => {
                                                     <td>{author.id}</td>
                                                     <td>{author.name}</td>
                                                     <td>
-                                                        <Link to='/Update-author'>
-                                                        <button className='btn btn-primary'>
+                                                     
+                                                        <button className='btn btn-primary' onClick={()=>navigate('/update-author/String{$(author.id)}')}>
                                                             <i className="fas fa-user-edit ml-2"></i>
+                                                            
                                                         </button>
-                                                        </Link>
+
                                                     </td>
                                                     <td>
                                                         <a href={`/remove-author/${author.id}`} className="btn btn-primary">

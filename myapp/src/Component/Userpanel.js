@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from './Navbar';
-import { Link } from 'react-router-dom';
+import Navbarhome from './Navbarhome';
 
-const BookList = () => {
+const Userpanel = () => {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
@@ -25,18 +24,14 @@ const BookList = () => {
 
   return (
     <div>
-      <Navbar />
+         <Navbarhome title="USER PANEL" loginLink="/Home" button="Logout"/>
+      
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"></link>
       <div className="container my-2">
         <div className="card">
           <div className="card-body">
             <div className="container my-5">
-              <p className="my-5">
-              <Link to='/Add-book' className="btn btn-primary">
-                <i className="fas fa-user-plus ml-2"> Add Book </i>
-              </Link>
-
-              </p>
+              <p className="my-5"></p>
               <div className="col-md-12">
                 {books.length > 0 ? (
                   <table className="table table-striped table-responsive-md">
@@ -61,18 +56,7 @@ const BookList = () => {
                           <td>{book.publisher}</td>
                           <td>{book.category}</td>
                           <td>{book.author}</td>
-                          <td>
-                            
-                              <button className='btn btn-primary' onClick={()=>navigate('/update-book/String{$(author.id)}')}>
-                                <i className="fas fa-user-edit ml-2"></i>
-                              </button>
-                            
-                          </td>
-                          <td>
-                            <Link to={`/remove-book/${book.id}`} className="btn btn-primary">
-                              <i className="fas fa-user-times ml-"></i>
-                            </Link>
-                          </td>
+                         
                         </tr>
                       ))}
                     </tbody>
@@ -89,4 +73,4 @@ const BookList = () => {
   );
 };
 
-export default BookList;
+export default Userpanel;

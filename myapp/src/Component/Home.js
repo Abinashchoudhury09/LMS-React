@@ -14,7 +14,11 @@ import Navbarhome from './Navbarhome';
 
   return (
     <>
-    <Navbarhome/>
+   
+   
+      <Navbarhome title="Library Management System" registerLink="/Signup" loginLink="/login" button="Login" />
+
+
       <div>
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"></link>
         <div>
@@ -25,7 +29,7 @@ import Navbarhome from './Navbarhome';
                 <div className="col-md-10">
                   <h2 className="display-4 font-weight-bold text-white pt-5 mb-2">Learning never stops</h2>
                   <hr className="hr-light"></hr>
-                  <h4 className="text-white my-4">Served more than half a million customers till date, with an average rating of 4.9+</h4>
+                  <h4 className="text-white my-4">Library management involves organizing, maintaining, and providing access to a collection of books and other materials in a library.</h4>
                   <button type="button" className="btn btn-outline-white text-white">Read more
                     <i className="fa fa-book ml-2"></i>
                   </button>
@@ -41,12 +45,8 @@ import Navbarhome from './Navbarhome';
               <h2 className="mb-5 font-weight-bold">Best Features</h2>
               <div className="row d-flex justify-content-center mb-4">
                 <div className="col-lg">
-                  <p className="grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi voluptate
-                    hic
-                    provident nulla repellat
-                    facere esse molestiae ipsa labore porro minima quam quaerat rem, natus repudiandae debitis
-                    est
-                    sit pariatur.</p>
+                  <p className="grey-text">Libraries use reports and analytics to assess the usage of materials, track circulation patterns, and make informed collection development decisions.
+LMS systems often provide reporting tools for librarians.</p>
 
                 </div>
               </div>

@@ -1,35 +1,36 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function Navbarhome() {
-  const navdesign = {
+export default function Navbarhome({ title, registerLink, loginLink ,button}) {
+  const navDesign = {
     width: '100vw',
   };
+
   return (
     <>
-      <nav style={navdesign} className="navbar navbar-expand-lg navbar-dark bg-info">
+      <nav style={navDesign} className="navbar navbar-expand-lg navbar-dark bg-info">
         <div className="container-fluid">
+          {/* Use the title prop for the brand */}
           <a className="navbar-brand" href="/">
-            Library Management System
+            {title}
           </a>
-          
+
           <div className="collapse navbar-collapse" id="navbarScroll">
-           
             <ul className="navbar-nav ms-auto">
               {/* Moved the buttons to a new navbar-nav with ms-auto class for right alignment */}
               <div className="nav-item">
-                <button className="btn btn-primary me-md-2" >
-                  
-                  Register
-                </button>
+                {/* Use the registerLink prop for the Register button */}
+                <Link to={registerLink}>
+                  <button className="btn btn-primary me-md-2">
+                    Register
+                  </button>
+                </Link>
               </div>
               <div className="nav-item">
-             
-                 
-                <Link to="/Signin"><button className="btn btn-primary me-md-2">Login</button></Link>
-                
-                
-
+                {/* Use the loginLink prop for the Login button */}
+                <Link to={loginLink}>
+                  <button className="btn btn-primary me-md-2">{button}</button>
+                </Link>
               </div>
             </ul>
           </div>
