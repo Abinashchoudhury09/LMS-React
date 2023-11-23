@@ -60,7 +60,7 @@ const UpdateBook = ({ book, categories, authors, publishers }) => {
                 </div>
 
                 <div className="form-group col-md-8">
-                  <label htmlFor="name" className="col-form-label">Book Name</label>
+                  <label htmlFor="name" className="col-form-label">Book </label>
                   <input
                     type="text"
                     value={name}
@@ -74,7 +74,7 @@ const UpdateBook = ({ book, categories, authors, publishers }) => {
                 </div>
 
                 <div className="form-group col-md-8">
-                  <label htmlFor="description" className="col-form-label">Book Description</label>
+                  <label htmlFor="description" className="col-form-label">Description</label>
                   <input
                     type="text"
                     value={description}
@@ -88,44 +88,41 @@ const UpdateBook = ({ book, categories, authors, publishers }) => {
 
                 <div className="form-group col-md-8">
                   <label htmlFor="categories" className="col-form-label">Category</label>
-                  <select
-                    value={selectedCategory}
+                  <input
+                    type="text"
+                    value={categories}
                     onChange={handleInputChange}
-                    name="selectedCategory"
+                    name="description"
                     className="form-control"
-                  >
-                    {categories && categories.map((category) => (
-                      <option key={category.id} value={category.id}>{category.name}</option>
-                    ))}
-                  </select>
+                    id="description"
+                    placeholder="categories"
+                  />
                 </div>
 
                 <div className="form-group col-md-8">
-                  <label htmlFor="authors" className="col-form-label">Author</label>
-                  <select
-                    value={selectedAuthor}
+                  <label htmlFor="authors" className="col-form-label">author</label>
+                  <input
+                    type="text"
+                    value={authors}
                     onChange={handleInputChange}
-                    name="selectedAuthor"
+                    name="author"
                     className="form-control"
-                  >
-                    {authors && authors.map((author) => (
-                      <option key={author.id} value={author.id}>{author.name}</option>
-                    ))}
-                  </select>
+                    id="author"
+                    placeholder="author"
+                  />
                 </div>
 
                 <div className="form-group col-md-8">
                   <label htmlFor="publishers" className="col-form-label">Publisher</label>
-                  <select
-                    value={selectedPublisher}
+                  <input
+                    type="text"
+                    value={publishers}
                     onChange={handleInputChange}
-                    name="selectedPublisher"
+                    name="publisher"
                     className="form-control"
-                  >
-                    {publishers && publishers.map((publisher) => (
-                      <option key={publisher.id} value={publisher.id}>{publisher.name}</option>
-                    ))}
-                  </select>
+                    id="publisher"
+                    placeholder="publisher"
+                  />
                 </div>
 
                 <div className="col-md-6">

@@ -2,21 +2,33 @@ import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar';
 import { Link } from 'react-router-dom';
 
-const Publishers = ({ publishers }) => {
+const Publishers = () => {
   // Initialize state variable as an empty array
-  const [publishersState, setPublishersState] = useState([]);
+  const [publishers, setPublishers] = useState([]);
 
-  // Update state when publishers prop changes
+  // Update state with publishers from the backend
   useEffect(() => {
-    if (publishers) {
-      setPublishersState(publishers);
+    fetchPublishers();
+  }, []); // Empty dependency array to ensure the effect runs once when the component mounts
+
+  const fetchPublishers = async () => {
+    try {
+      const response = await fetch('http://localhost:8080/publishers');
+      if (response.ok) {
+        const publishersData = await response.json();
+        setPublishers(publishersData);
+      } else {
+        console.error('Failed to fetch publishers');
+      }
+    } catch (error) {
+      console.error('Error fetching publishers:', error);
     }
-  }, [publishers]);
+  };
 
   return (
     <div>
-      
       <Navbar />
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"></link>
 
       <div className="container my-2">
         <div className="card">
@@ -28,7 +40,7 @@ const Publishers = ({ publishers }) => {
                 </Link>
               </p>
               <div className="col-md-12">
-                {publishersState.length === 0 ? (
+                {publishers.length === 0 ? (
                   <h2>No record found !!</h2>
                 ) : (
                   <table className="table table-striped table-responsive-md">
@@ -41,21 +53,21 @@ const Publishers = ({ publishers }) => {
                       </tr>
                     </thead>
                     <tbody>
-                      {publishersState.map((publisher) => (
+                      {publishers.map((publisher) => (
                         <tr key={publisher.id}>
                           <td>{publisher.id}</td>
                           <td>{publisher.name}</td>
                           <td>
-                            <Link to='/Update-publisher'>
-                            <button className="btn btn-primary">
-                              <i className="fas fa-user-edit ml-2"></i>
-                            </button>
+                            <Link to={`/update-publisher/${publisher.id}`}>
+                              <button className="btn btn-primary">
+                                <i className="fas fa-user-edit ml-2"></i>
+                              </button>
                             </Link>
                           </td>
                           <td>
-                            <a href={`/remove-publisher/${publisher.id}`} className="btn btn-primary">
+                            <Link to={`/remove-publisher/${publisher.id}`} className="btn btn-primary">
                               <i className="fas fa-user-times ml-2"></i>
-                            </a>
+                            </Link>
                           </td>
                         </tr>
                       ))}

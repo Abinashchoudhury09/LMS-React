@@ -1,126 +1,154 @@
 import React, { useState } from 'react';
 import Navbar from './Navbar';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-const AddBook = ({ categories, authors, publishers }) => {
-  // Initialize state variables for form data
+const AddBook = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     isbn: '',
     name: '',
     description: '',
-    selectedCategory: '',
-    selectedAuthor: '',
-    selectedPublisher: '',
+    category: '',
+    author: '',
+    publisher: '',
   });
 
-  // Destructure form data for easier access
-  const { isbn, name, description, selectedCategory, selectedAuthor, selectedPublisher } = formData;
-
-  // Handle form submission
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    // Add your logic for form submission here
-    console.log('Form submitted:', formData);
-  };
-
-  // Handle input changes
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
+  const handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
     setFormData({ ...formData, [name]: value });
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const dr={...formData}
+    const isbn=dr.isbn
+    const name=dr.name
+    const description=dr.description
+    const category=dr.category
+    const author=dr.author
+    const publisher=dr.publisher
+    const data={isbn,name,description,category,author,publisher}
+
+
+    try {
+      fetch('http://localhost:8080/save-book',{
+        method:"post",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify(data)
+    }).then(()=>{
+        console.log(data)
+        navigate("/Book")
+    }).catch((e)=>{
+        console.log(e)
+    })
+
+
+      
+    } catch (error) {
+      console.error('Error:', error);
+      // Handle network or other errors
+    }
+  };
+
   const cardStyle = {
     width: '45rem',
-  }
+  };
 
   return (
     <div>
-      <Navbar/>
+      <Navbar />
       <div style={cardStyle} className="container my-2">
         <div className="card">
           <div className="card-body">
             <form onSubmit={handleSubmit}>
               <div className="row">
                 <div className="form-group col-md-8">
-                  <label htmlFor="isbn" className="col-form-label">ISBN</label>
+                  <div className="col-form-label">ISBN</div>
                   <input
                     type="text"
-                    value={isbn}
-                    onChange={handleInputChange}
+                    value={formData.isbn}
+                    onChange={handleChange}
                     name="isbn"
                     className="form-control"
                     id="isbn"
                     placeholder="ISBN"
+                    autoComplete="off"
                   />
                 </div>
 
                 <div className="form-group col-md-8">
-                  <label htmlFor="name" className="col-form-label">Book Name</label>
+                  <div className="col-form-label">Book Name</div>
                   <input
                     type="text"
-                    value={name}
-                    onChange={handleInputChange}
+                    value={formData.name}
+                    onChange={handleChange}
                     name="name"
                     className="form-control"
                     id="name"
                     placeholder="Book Name"
+                    autoComplete="off"
                   />
                 </div>
 
                 <div className="form-group col-md-8">
-                  <label htmlFor="description" className="col-form-label">Book Description</label>
+                  <div className="col-form-label">Book Description</div>
                   <input
                     type="text"
-                    value={description}
-                    onChange={handleInputChange}
+                    value={formData.description}
+                    onChange={handleChange}
                     name="description"
                     className="form-control"
                     id="description"
                     placeholder="Book Description"
+                    autoComplete="off"
                   />
                 </div>
 
                 <div className="form-group col-md-8">
-                  <label htmlFor="categories" className="col-form-label">Category</label>
+                  <div className="col-form-label">category</div>
                   <input
                     type="text"
-                    value={categories}
-                    onChange={handleInputChange}
-                    name="categories"
+                    value={formData.category}
+                    onChange={handleChange}
+                    name="category"
                     className="form-control"
-                    id="categories"
+                    id="category"
                     placeholder="Enter category"
+                    autoComplete="off"
                   />
                 </div>
 
                 <div className="form-group col-md-8">
-                  <label htmlFor="authors" className="col-form-label">Author</label>
+                  <div className="col-form-label">Author</div>
                   <input
                     type="text"
-                    value={authors}
-                    onChange={handleInputChange}
-                    name="authors"
+                    value={formData.author}
+                    onChange={handleChange}
+                    name="author"
                     className="form-control"
-                    id="authors"
+                    id="author"
                     placeholder="Enter author"
+                    autoComplete="off"
                   />
                 </div>
 
                 <div className="form-group col-md-8">
-                  <label htmlFor="publishers" className="col-form-label">Publisher</label>
+                  <div className="col-form-label">Publisher</div>
                   <input
                     type="text"
-                    value={publishers}
-                    onChange={handleInputChange}
-                    name="publishers"
+                    value={formData.publisher}
+                    onChange={handleChange}
+                    name="publisher"
                     className="form-control"
-                    id="publishers"
+                    id="publisher"
                     placeholder="Enter publisher"
+                    autoComplete="off"
                   />
                 </div>
 
                 <div className="col-md-6">
-                  <Link to='/Book'><input type="submit" className="btn btn-primary" value="Submit" /></Link>
+                  <input type="submit" className="btn btn-primary" value="Submit" />
                 </div>
               </div>
             </form>
