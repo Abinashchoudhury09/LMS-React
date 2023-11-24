@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar';
-import { Link } from 'react-router-dom';
+import { Link ,useNavigate} from 'react-router-dom';
 
 const BookList = () => {
+  const navigate = useNavigate();
   const [books, setBooks] = useState([]);
 
   useEffect(() => {

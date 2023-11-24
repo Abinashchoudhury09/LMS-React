@@ -41,7 +41,7 @@ const Signup= () => {
 
       // Handle the API response as needed
       console.log('API Response:', response.data);
-      navigate('/');
+      navigate('/Userpanel');
     } catch (error) {
       // Handle any errors that occurred during the API request
       console.error('Error:', error.message);

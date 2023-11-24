@@ -16,7 +16,7 @@ import Navbarhome from './Navbarhome';
     <>
    
    
-      <Navbarhome title="Library Management System" registerLink="/Signup" loginLink="/login" button="Login" />
+      <Navbarhome title="Library Management System" showRegisterButton={true} registerLink="/Signup" loginLink="/login" button="Login" />
 
 
       <div>

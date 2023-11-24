@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function Navbarhome({ title, registerLink, loginLink ,button}) {
+export default function Navbarhome({ title, registerLink,showRegisterButton, loginLink ,button}) {
   const navDesign = {
     width: '100vw',
   };
@@ -18,14 +18,14 @@ export default function Navbarhome({ title, registerLink, loginLink ,button}) {
           <div className="collapse navbar-collapse" id="navbarScroll">
             <ul className="navbar-nav ms-auto">
               {/* Moved the buttons to a new navbar-nav with ms-auto class for right alignment */}
-              <div className="nav-item">
-                {/* Use the registerLink prop for the Register button */}
-                <Link to={registerLink}>
-                  <button className="btn btn-primary me-md-2">
-                    Register
-                  </button>
-                </Link>
-              </div>
+              {showRegisterButton && (
+                <div className="nav-item">
+                  {/* Use the registerLink prop for the Register button */}
+                  <Link to={registerLink}>
+                    <button className="btn btn-primary me-md-2">Register</button>
+                  </Link>
+                </div>
+              )}
               <div className="nav-item">
                 {/* Use the loginLink prop for the Login button */}
                 <Link to={loginLink}>

@@ -54,7 +54,7 @@ export default function Navbar() {
               </li>
             </ul>
               <div className="nav-item">
-                <Link to=''><button className="btn btn-primary " type="button">
+                <Link to='/'><button className="btn btn-primary " type="button">
                   Logout
                 </button></Link>
               </div>
