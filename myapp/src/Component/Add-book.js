@@ -18,7 +18,6 @@ const AddBook = () => {
     const value = e.target.value;
     setFormData({ ...formData, [name]: value });
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const dr={...formData}
